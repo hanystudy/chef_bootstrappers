@@ -1,0 +1,29 @@
+{
+  "name": "elastic_node",
+  "description": "Elasticsearch node role.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "java": {
+      "install_flavor": "oracle",
+      "jdk_version": "8",
+      "oracle": {
+        "accept_oracle_download_terms": true
+      }
+    },
+    "elasticsearch": {
+      "configure": {
+        "configuration": {
+          "network.host": "0.0.0.0"
+        }
+      }
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": ["recipe[java::default]",
+    "recipe[elasticsearch::default]"
+  ],
+  "env_run_lists": {
+  }
+}
